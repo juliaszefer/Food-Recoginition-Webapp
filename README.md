@@ -1,6 +1,6 @@
 # food_recoginition_webapp
-datasource: < br/ >
+datasource:
 https://www.kaggle.com/datasets/kmader/food41/data
 
-inspiration: < br/ > 
+inspiration:
 https://github.com/Gogul09/image-classification-python/blob/master/train_test.py
