@@ -4,7 +4,7 @@ from PIL import Image
 class Predict:
     model = YOLO('./runs/classify/train5/weights/last.pt')
 
-    def predict(self, img):
+    def predict_top5_results(self, img):
         results = self.model.predict(img)
 
         dict_result = dict()
@@ -47,5 +47,5 @@ class Predict:
         x = input("Input image number: ")
         # predict(f'./test_images/{x}.jpg')
         img = Image.open(f'./test_images/{x}.jpg')
-        res = predict(img)
+        res = predict_top5_results(img)
         print(res)
