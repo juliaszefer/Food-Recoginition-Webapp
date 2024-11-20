@@ -1,5 +1,4 @@
-﻿from aiohttp.web_routedef import static
-from ultralytics import YOLO
+﻿from ultralytics import YOLO
 from PIL import Image
 
 class Predict:
