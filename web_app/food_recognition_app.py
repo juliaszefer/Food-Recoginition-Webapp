@@ -1,47 +1,64 @@
 ﻿import streamlit as st
-import base64
-from streamlit_extras.stylable_container import stylable_container
-
+import pandas as pd
+from PIL import Image
 from image_classification_yolo.predict import Predict
 
-model = Predict
+model = Predict()
 
-tab = {"jeden": 99.99, "dwa": 88.99, "trzy": 77.99, "cztery": 66.99, "piec": 55.99}
+def predict_food_category(image):
+    return model.predict_top5_results(image)
 
-def get_base64_of_bin_file(bin_file):
-    with open(bin_file, 'rb') as f:
-        data = f.read()
-    return base64.b64encode(data).decode()
+def welcome_page():
+    st.title("Witaj w aplikacji rozpoznawania jedzenia!")
+    st.write(
+        """
+        Cześć! Witamy w naszej aplikacji, która wykorzystuje zaawansowane algorytmy uczenia maszynowego do rozpoznawania kategorii jedzenia na podstawie zdjęcia. 
+        Wystarczy, że prześlesz nam zdjęcie swojego posiłku, a nasz model spróbuje zgadnąć, co to za potrawa!
 
-def set_png_as_page_bg(png_file):
-    bin_str = get_base64_of_bin_file(png_file)
-    page_bg_img = f'''
-    <style>
-    .st-emotion-cache-1r4qj8v {{
-        background-image: url("data:image/png;base64,{bin_str}");
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center;
-    }}
-    </style>
-    '''
+        Zastosowana technologia opiera się na sieciach neuronowych i zaawansowanych algorytmach rozpoznawania obrazów. 
+        Dzięki niej możemy pomóc w szybkim i dokładnym określeniu, co znajduje się na Twoim talerzu!
+        """
+    )
+    st.write("Przejdź do zakładki 'Rozpoznawanie', aby wypróbować nasz model!")
 
-    st.markdown(page_bg_img, unsafe_allow_html=True)
 
-set_png_as_page_bg('assets/image.png')
+def food_recognition_page():
+    st.title("Rozpoznaj jedzenie!")
 
-with stylable_container(
-        key="white_container",
-        css_styles="""
-            {
-                background-color: white;
-                height: 400px;
-                width: 600px;
-                border-radius: 20px;
-            }
-            """,
-    ):
-        st.header("WELCOME")
-        img = st.file_uploader('Upload your image', type=['png', 'jpg', 'jpeg'])
-        st.write(model.predict_top5_results(img))
-        st.balloons()
+    uploaded_image = st.file_uploader("Wgraj zdjęcie swojego jedzenia", type=["jpg", "jpeg", "png"])
+
+    if uploaded_image is not None:
+        image = Image.open(uploaded_image)
+        st.image(image, caption="Twoje zdjęcie")
+
+        st.write("Przetwarzanie obrazu...")
+
+        prediction = predict_food_category(image)
+
+        if prediction:
+            results_df = pd.DataFrame(list(prediction.items()), columns=["Kategoria", "Prawdopodobieństwo (%)"])
+            results_df["Prawdopodobieństwo (%)"] = results_df["Prawdopodobieństwo (%)"].round(
+                2)
+            st.table(results_df)
+
+        st.write("Czy wynik jest trafny?")
+
+        is_correct = st.radio("Wybierz odpowiedź", ["Tak", "Nie"])
+        submit_button = st.button("OK")
+
+        if is_correct == "Tak" and submit_button:
+            st.balloons()
+            st.write("Cieszymy się, że trafiliśmy! 🎉")
+        elif is_correct == "Nie" and submit_button:
+            st.write("Przepraszamy! Spróbuj ponownie lub sprawdź inne zdjęcie... 😞")
+            st.snow()
+
+
+
+st.sidebar.title("Aplikacja do rozpoznawania jedzenia")
+app_mode = st.sidebar.selectbox("Wybierz opcję", ["Powitanie", "Rozpoznawanie jedzenia"])
+
+if app_mode == "Powitanie":
+    welcome_page()
+elif app_mode == "Rozpoznawanie jedzenia":
+    food_recognition_page()
