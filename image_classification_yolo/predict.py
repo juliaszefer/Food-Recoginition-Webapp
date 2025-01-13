@@ -2,7 +2,7 @@
 from PIL import Image
 
 class Predict:
-    model = YOLO('./runs/classify/train5/weights/last.pt')
+    model = YOLO('image_classification_yolo/runs/classify/train5/weights/last.pt')
 
     def predict_top5_results(self, img):
         results = self.model.predict(img)
