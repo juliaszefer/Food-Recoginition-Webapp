@@ -5,6 +5,9 @@ from predict import Predict
 
 model = Predict()
 
+def __init__(self):
+    pass
+
 def predict_food_category(image):
     return model.predict_top5_results(image)
 
