@@ -2,10 +2,6 @@
 from PIL import Image
 
 class Predict:
-
-    def __init__(self):
-        pass
-
     model = YOLO('./runs/classify/train5/weights/last.pt')
 
     def predict_top5_results(self, img):
