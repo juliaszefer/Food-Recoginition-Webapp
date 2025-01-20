@@ -11,14 +11,16 @@ Since many images contained **human faces**, an additional preprocessing model w
 1. **Clone the repository**  
    ```bash
    git clone <repository_url>
+   ```
 
 2. **Navigate to the project directory**  
    ```bash
    cd image_classification_yolo
+   ```
 
-3. **Run streamlit app
-  ```bash
-  streamlit run food_recognition_app.py
+3. **Run streamlit app**
+   ```bash
+   streamlit run food_recognition_app.py
    ```
 
 ## 📷 Example Usage
