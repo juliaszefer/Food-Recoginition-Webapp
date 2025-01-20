@@ -10,7 +10,7 @@ Since many images contained **human faces**, an additional preprocessing model w
 ## 🚀 How to Run the Project
 1. **Clone the repository**  
    ```bash
-   git clone <repository_url>
+   git clone [<repository_url>](https://github.com/juliaszefer/Food-Recoginition-Webapp.git)
    ```
 
 2. **Navigate to the project directory**  
