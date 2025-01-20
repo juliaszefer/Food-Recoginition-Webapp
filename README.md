@@ -12,13 +12,18 @@ Since many images contained **human faces**, an additional preprocessing model w
    ```bash
    git clone https://github.com/juliaszefer/Food-Recoginition-Webapp.git
    ```
+   
+2. **Install requirements.txt**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-2. **Navigate to the project directory**  
+4. **Navigate to the project directory**  
    ```bash
    cd image_classification_yolo
    ```
 
-3. **Run streamlit app**
+5. **Run streamlit app**
    ```bash
    streamlit run food_recognition_app.py
    ```
