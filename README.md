@@ -19,6 +19,7 @@ Since many images contained **human faces**, an additional preprocessing model w
 3. **Run streamlit app
   ```bash
   streamlit run food_recognition_app.py
+   ```
 
 ## 📷 Example Usage
 Once the application is running, upload an image of food, and the model will classify it into one of the predefined categories.
