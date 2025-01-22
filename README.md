@@ -8,12 +8,12 @@ The dataset consists of **101 subsets**, each containing **1,000 images (.jpg)**
 Since many images contained **human faces**, an additional preprocessing model was developed to detect and filter out faces, ensuring better accuracy in food recognition.  
 
 ## 🚀 How to Run the Project
-1. **Just open our deployed app**
+**Just open our deployed app**
    ```bash
    https://food-recognition-webapp.streamlit.app
    ```
 
-1`. **Or clone the repository**  
+1. **Or clone the repository**  
    ```bash
    git clone https://github.com/juliaszefer/Food-Recoginition-Webapp.git
    ```
