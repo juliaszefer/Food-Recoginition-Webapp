@@ -12,8 +12,9 @@ Since many images contained **human faces**, an additional preprocessing model w
    ```bash
    https://food-recognition-webapp.streamlit.app
    ```
+**OR**
 
-1. **Or clone the repository**  
+1. **Clone the repository**  
    ```bash
    git clone https://github.com/juliaszefer/Food-Recoginition-Webapp.git
    ```
